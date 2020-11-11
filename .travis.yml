@@ -2,3 +2,11 @@ language: java
 jdk:
   - openjdk11
 
+env:
+  - IMAGE_TAG=dockerized
+
+services:
+  - docker
+
+script:
+  - docker build -t IMAGE_TAG .
