@@ -3,17 +3,25 @@ jdk:
   - openjdk11
 
 env:
-  - DOCKER_IMAGE_TAG=tobiassu87/docker-course:travis-tagged
+  global:
+    - DOCKER_IMAGE_TAG=tobiassu87/docker-course:travis-tagged
+    - ZIP_FILE=deployment-files.zip
 
 services:
   - docker
 
 script:
-  - docker build -t $DOCKER_IMAGE_TAG .
+  - zip $ZIP_FILE ./build/libs/dockerized-0.0.1-SNAPSHOT.jar Dockerfile
 
 deploy:
-  provider: script
-  script: bash docker_push.sh
+  provider: elasticbeanstalk
+  skip_cleanup: true
+  zip_file: "$ZIP_FILE"
+  region: "eu-central-1"
+  app: "docker-course"
+  env: "DockerCourse-env"
+  bucket_name: "elasticbeanstalk-eu-central-1-793601222992"
   on:
     branch: main
-
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
