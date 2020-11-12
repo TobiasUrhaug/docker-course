@@ -3,10 +3,17 @@ jdk:
   - openjdk11
 
 env:
-  - IMAGE_TAG=dockerized
+  - DOCKER_IMAGE_TAG=tobiassu87/docker-course:travis-tagged
 
 services:
   - docker
 
 script:
-  - docker build -t IMAGE_TAG .
+  - docker build -t $DOCKER_IMAGE_TAG .
+
+deploy:
+  provider: script
+  script: bash docker_push.sh
+  on:
+    branch: main
+
