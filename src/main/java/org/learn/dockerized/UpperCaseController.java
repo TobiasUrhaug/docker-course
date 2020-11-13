@@ -8,6 +8,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class UpperCaseController {
 
     @GetMapping
+    public String welcomeMessage() {
+        return "<h1>Welcome to this incredible app!</h1>";
+    }
+
+    @GetMapping("uppercase")
     public String upperCase(@RequestParam String string) {
         return string.toUpperCase();
     }
