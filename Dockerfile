@@ -1,5 +1,4 @@
 FROM adoptopenjdk/openjdk11:alpine
-EXPOSE 8080
 WORKDIR /app
 RUN addgroup -S docker && adduser -S docker -G docker
 USER docker:docker

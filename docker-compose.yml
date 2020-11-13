@@ -1,0 +1,6 @@
+version: '3'
+services:
+  docker-course:
+    image: 'tobiassu87/docker-course:travis-tagged'
+    ports:
+      - '5000:8080'
