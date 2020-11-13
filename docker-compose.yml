@@ -1,6 +1,6 @@
 version: '3'
 services:
   docker-course:
-    image: 'tobiassu87/docker-course:travis-tagged'
+    image: 'tobiassu87/docker-course:locally-tagged'
     ports:
-      - '5000:8080'
+      - '5000:5000'
